@@ -9,7 +9,7 @@ import '../components/or_divider.dart';
 import '../components/textfield.dart';
 import '../utils/utils.dart';
 
-class login_screen extends StatelessWidget {
+class signup_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -50,7 +50,7 @@ class login_screen extends StatelessWidget {
                   width: 150.w,
                   height: 87.h,
                   child: Text(
-                    'Welcome \nBack!',
+                    'Create \nAccount',
                     style: SafeGoogleFont(
                       'Sansita',
                       fontSize: 36.sp,
@@ -97,15 +97,20 @@ class login_screen extends StatelessWidget {
                   child: Column(
                     children: [
                       inputfields(
-                        hint_text: 'Email',
+                        hint_text: 'Name',
                         currentNode: null,
                         focusNode: null,
                         nextNode: null,
                         controller: null,
 
                       ),
-                      SizedBox(
-                        height: 10.h,
+                      inputfields(
+                        hint_text: 'Email',
+                        currentNode: null,
+                        focusNode: null,
+                        nextNode: null,
+                        controller: null,
+                        icon: (Icons.check),
                       ),
                       inputfields(
                         hint_text: 'Password',
@@ -125,11 +130,11 @@ class login_screen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 32.h,
+                        height: 28.h,
                       ),
                       const button1(),
                       SizedBox(
-                        height: 25.h,
+                        height: 20.h,
                       ),
                       const or_line_widget(),
                       SizedBox(
@@ -334,3 +339,4 @@ class login_screen extends StatelessWidget {
 // //     );
 // //   }
 // // }
+//
