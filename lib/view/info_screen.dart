@@ -19,7 +19,7 @@ class info_screen extends StatelessWidget {
             Container(
               // autogroup4n5vEdZ (9Nu4BLLx6UXrqGPiz54N5v)
               padding:
-                  EdgeInsets.fromLTRB(27 * fem, 51 * fem, 23 * fem, 5 * fem),
+                  EdgeInsets.only( left:27.w,top: 51.h,right: 16.w,bottom: 5.h),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +27,7 @@ class info_screen extends StatelessWidget {
                   Container(
                     // fillthefollowinginformationAGK (23:79)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 96 * fem, 88 * fem),
+                        0, 0, 96.w, 50.h),
                     constraints: BoxConstraints(
                       maxWidth: 212.w,
                     ),
@@ -44,32 +44,32 @@ class info_screen extends StatelessWidget {
                   Container(
                     // autogroup4sw2SzX (9Nu3Prej9vd8srGavz4Sw2)
                     margin: EdgeInsets.fromLTRB(
-                        2 * fem, 0 * fem, 16 * fem, 42 * fem),
+                        2.w, 0, 16.w, 40.h),
                     width: double.infinity,
-                    height: 164 * fem,
+                    height: 164.h,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           // autogroupgmccFwy (9Nu3XrRQPygfqV1uZDgmCc)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                              0, 0 , 15.w, 0),
                           width: 141.w,
                           height: 164.h,
                           decoration: BoxDecoration(
                             border: Border.all(color: Color(0xffaf1179)),
-                            borderRadius: BorderRadius.circular(30 * fem),
+                            borderRadius: BorderRadius.circular(30.r),
                           ),
                           child: Stack(
                             children: [
                               Positioned(
                                 // florist5691544474108519XZ (23:89)
-                                left: 2 * fem,
-                                top: 40 * fem,
+                                left: 2.w,
+                                top: 40.h,
                                 child: Align(
                                   child: SizedBox(
-                                    width: 139 * fem,
-                                    height: 124 * fem,
+                                    width: 139.w,
+                                    height: 124.h,
                                     child: Image.asset(
                                       'assets/page-1/images/florist-5691544-4741085-1.png',
                                       fit: BoxFit.cover,
@@ -79,19 +79,18 @@ class info_screen extends StatelessWidget {
                               ),
                               Positioned(
                                 // girlejD (23:92)
-                                left: 60 * fem,
-                                top: 23 * fem,
+                                left: 60.w,
+                                top: 23.h,
                                 child: Align(
                                   child: SizedBox(
-                                    width: 26 * fem,
-                                    height: 20 * fem,
+                                    width: 26.w,
+                                    height: 20.h,
                                     child: Text(
                                       'Girl',
                                       style: SafeGoogleFont(
                                         'Sansita',
-                                        fontSize: 16 * ffem,
+                                        fontSize: 16.sp,
                                         fontWeight: FontWeight.w700,
-                                        height: 1.2 * ffem / fem,
                                         color: Color(0xffaf1179),
                                       ),
                                     ),
@@ -109,12 +108,12 @@ class info_screen extends StatelessWidget {
                             children: [
                               Positioned(
                                 // handsomeboy492961141183541QM1 (23:91)
-                                left: 7 * fem,
-                                top: 49 * fem,
+                                left: 3.w,
+                                top: 49.h,
                                 child: Align(
                                   child: SizedBox(
-                                    width: 135 * fem,
-                                    height: 115 * fem,
+                                    width: 135.w,
+                                    height: 115.h,
                                     child: Image.asset(
                                       'assets/page-1/images/handsome-boy-4929611-4118354-1-Q6w.png',
                                       fit: BoxFit.cover,
@@ -124,7 +123,6 @@ class info_screen extends StatelessWidget {
                               ),
                               Positioned(
                                 // rectangle109VUw (23:94)
-
                                 child: Align(
                                   child: SizedBox(
                                     width: 141.w,
@@ -132,7 +130,7 @@ class info_screen extends StatelessWidget {
                                     child: Container(
                                       decoration: BoxDecoration(
                                         borderRadius:
-                                            BorderRadius.circular(30 * fem),
+                                            BorderRadius.circular(30.r),
                                         border: Border.all(
                                             color: Color(0x994411af)),
                                       ),
@@ -142,8 +140,8 @@ class info_screen extends StatelessWidget {
                               ),
                               Positioned(
                                 // boyWQ3 (23:93)
-                                left: 55 * fem,
-                                top: 23 * fem,
+                                left: 60.w,
+                                top: 23.h,
                                 child: SizedBox(
                                   width: 26.w,
                                   height: 20.h,
@@ -153,7 +151,6 @@ class info_screen extends StatelessWidget {
                                       'Sansita',
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w700,
-                                      height: 1.2 * ffem / fem,
                                       color: Color(0xff4411af),
                                     ),
                                   ),
@@ -168,9 +165,9 @@ class info_screen extends StatelessWidget {
                   Container(
                     // autogroupzqwu1Lo (9Nu3nbVqdCaVrZL9xXZQWU)
                     margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5 * fem),
+                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
                     padding: EdgeInsets.fromLTRB(
-                        24 * fem, 10 * fem, 24 * fem, 10 * fem),
+                        24.w, 10.h, 24.w, 10.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
@@ -190,9 +187,9 @@ class info_screen extends StatelessWidget {
                   Container(
                     // autogroupwxh6eef (9Nu3sWXKNGsmrv6uRdWxH6)
                     margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5 * fem),
+                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
                     padding: EdgeInsets.fromLTRB(
-                        24 * fem, 9 * fem, 24 * fem, 11 * fem),
+                        24.w, 9.h, 24.w, 11.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
@@ -212,7 +209,7 @@ class info_screen extends StatelessWidget {
                   Container(
                     // autogroupmhkuHxX (9Nu3xFtQYRwggSz13eMhkU)
                     padding: EdgeInsets.fromLTRB(
-                        24 * fem, 8 * fem, 24 * fem, 12 * fem),
+                        24.w, 8.h, 24.w, 12.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
@@ -240,7 +237,7 @@ class info_screen extends StatelessWidget {
                   Positioned(
                     // vector24ro (23:102)
                     left: -90.w,
-                    top: 420.h,
+                    top: 450.h,
                     child: Image.asset(
                       'assets/page-1/images/vector-2-FW3.png',
                       width: 276.w,
@@ -250,7 +247,7 @@ class info_screen extends StatelessWidget {
                   Positioned(
                     // ellipse5BRd (23:101)
                     left: 107.w,
-                    top: 450.h,
+                    top: 480.h,
                     child: Image.asset(
                       'assets/page-1/images/ellipse-5-Yd9.png',
                       width: 467.w,
@@ -266,7 +263,7 @@ class info_screen extends StatelessWidget {
                           width: 274.w,
                           height: 46.h,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10 * fem),
+                            borderRadius: BorderRadius.circular(10.r),
                             color: Color(0xfffbb346),
                           ),
                           child: Center(

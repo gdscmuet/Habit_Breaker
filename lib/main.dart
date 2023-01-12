@@ -25,10 +25,11 @@ class MyApp extends StatelessWidget {
       builder: (context,child){
         return MaterialApp(
         title: 'Flutter Demo',
-        home: info_screen(),
+          home: home_page(),
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+       debugShowCheckedModeBanner: false,
        // onGenerateRoutes: Routes.onGenerateRoute(settings),
       );
       },
