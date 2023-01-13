@@ -32,8 +32,8 @@ class login_screen extends StatelessWidget {
                 //  labelText: 'Email',
                 prefixIcon: Icon(Icons.alternate_email)),
             onFieldSubmitted: (valu) {
-              utils.fieldFocusChange(
-                  context, emailFocusNode, passwordFocusNode);
+              // utils.fieldFocusChange(
+                  // context, emailFocusNode, passwordFocusNode);
             },
           ),
           ValueListenableBuilder(
