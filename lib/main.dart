@@ -1,12 +1,16 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/utils/routes/Routes.dart';
 import 'package:habit_breaker/utils/routes/RoutesName.dart';
+import 'package:habit_breaker/view/home_screen.dart';
+import 'package:habit_breaker/view/info_screen.dart';
+import 'package:habit_breaker/view/login_screen.dart';
+import 'package:habit_breaker/view/signup_screen.dart';
+import 'package:habit_breaker/view/splash_screen.dart';
 
-void main() async{
-WidgetsFlutterBinding.ensureInitialized();
-await Firebase.initializeApp();
+void main() {
   runApp(const MyApp());
 }
 
@@ -21,12 +25,12 @@ class MyApp extends StatelessWidget {
       builder: (context,child){
         return MaterialApp(
         title: 'Flutter Demo',
+          home: home_page(),
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: RoutesName.login,
+       debugShowCheckedModeBanner: false,
        // onGenerateRoutes: Routes.onGenerateRoute(settings),
-      onGenerateRoute: Routes.onGenerateRoute,
       );
       },
     );
