@@ -3,8 +3,21 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_breaker/view/signup_screen.dart';
 
-class scene extends StatelessWidget {
+class scene extends StatefulWidget {
+  @override
+  State<scene> createState() => _sceneState();
+}
+
+class _sceneState extends State<scene> {
+
+  @override
+  void initState() {
+    super.initState();
+    navigateToSignUp();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -95,6 +108,13 @@ class scene extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void navigateToSignUp() async{
+    await Future.delayed(Duration(milliseconds: 1500), (){});
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => signup_screen())
     );
   }
 }
