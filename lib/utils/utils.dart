@@ -5,7 +5,7 @@ import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-class utils{
+class Utils{
  // static toastMessage(String message){
  //    Fluttertoast.showToast(msg: message);
  //  }
@@ -36,7 +36,11 @@ class utils{
     current.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
-
+  //
+  // static bool validateEmail(String email){
+  //   return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+  //       .hasMatch(email) || email.isNotEmpty;
+  // }
 }
 
 
@@ -118,4 +122,6 @@ TextStyle SafeGoogleFont(
       decorationThickness: decorationThickness,
     );
   }
+
+
 }

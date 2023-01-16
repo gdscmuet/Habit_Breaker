@@ -3,13 +3,18 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_breaker/view/home_screen.dart';
 import '../components/button1.dart';
 import '../components/button2.dart';
 import '../components/or_divider.dart';
 import '../components/textfield.dart';
 import '../utils/utils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class login_screen extends StatelessWidget {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -145,6 +150,33 @@ class login_screen extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future login(BuildContext context) async{
+    if(emailController.text.isEmpty || passwordController.text.isEmpty) {
+      print("Fields are empty");
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
+
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim()
+      );
+      print("SignIn successfull!");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => home_page())
+      );
+    }on FirebaseAuthException catch(e){
+      print(e);
+    }
+    Navigator.of(context, rootNavigator: true).pop('dialog');
+
   }
 }
 

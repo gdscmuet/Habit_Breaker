@@ -1,15 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_breaker/view/home_screen.dart';
 import '../components/button1.dart';
 import '../components/button2.dart';
 import '../components/or_divider.dart';
 import '../components/textfield.dart';
 import '../utils/utils.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 class signup_screen extends StatelessWidget {
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -102,14 +109,13 @@ class signup_screen extends StatelessWidget {
                         focusNode: null,
                         nextNode: null,
                         controller: null,
-
                       ),
                       inputfields(
                         hint_text: 'Email',
                         currentNode: null,
                         focusNode: null,
                         nextNode: null,
-                        controller: null,
+                        controller: emailController,
                         icon: (Icons.check),
                       ),
                       inputfields(
@@ -117,7 +123,7 @@ class signup_screen extends StatelessWidget {
                         currentNode: null,
                         focusNode: null,
                         nextNode: null,
-                        controller: null,
+                        controller: passwordController,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 190),
@@ -140,7 +146,26 @@ class signup_screen extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      const button2(),
+                      // const button2(),
+                      InkWell(
+                          onTap: () {
+                            signUp(context);
+                          }, // Handle your callback
+                        child: IgnorePointer(
+                          child: Container(
+                            width: 274.w,
+                            height: 46.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.r),
+                              border: Border.all(color: Color(0xffC0BEBE)),
+                            ),
+                            child: Center(
+                              child: Text("Sign Up",style:
+                              TextStyle(color: Color(0xffC0BEBE), fontFamily: "Sansita", fontSize: 16.sp),),
+                            ),
+                          )
+                      ),
+                      )
                     ],
                   ),
                 ),
@@ -150,6 +175,38 @@ class signup_screen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signUp(BuildContext context) async{
+    if(emailController.text.isEmpty || passwordController.text.isEmpty) {
+      print("Fields are empty!");
+      return;
+    }
+    // if(Utils.validateEmail(emailController.text) ) {
+    //   print("Invalid email!");
+    //   return;
+    // }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
+
+    try{
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim()
+      );
+      print("SignIn successfull!");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => home_page())
+      );
+
+    }on FirebaseAuthException catch(e){
+      print(e);
+    }
+    Navigator.of(context, rootNavigator: true).pop('dialog');
   }
 }
 
