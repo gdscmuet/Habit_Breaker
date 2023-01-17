@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_breaker/resources/firebase_methods.dart';
 import 'package:habit_breaker/view/home_screen.dart';
 import '../components/button1.dart';
 import '../components/button2.dart';
@@ -20,7 +21,10 @@ class signup_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double fem = MediaQuery
+        .of(context)
+        .size
+        .width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -148,23 +152,33 @@ class signup_screen extends StatelessWidget {
                       ),
                       // const button2(),
                       InkWell(
-                          onTap: () {
-                            signUp(context);
-                          }, // Handle your callback
+                        onTap: () {
+                          if (emailController.text.isEmpty || passwordController
+                              .text.isEmpty) {
+                            print("Fields are empty!");
+                            return;
+                          }
+                          FirebaseNetworkServices.signUp(
+                              context, emailController.text.trim(),
+                              passwordController.text.trim()
+                          );
+                        }, // Handle your callback
                         child: IgnorePointer(
-                          child: Container(
-                            width: 274.w,
-                            height: 46.h,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              border: Border.all(color: Color(0xffC0BEBE)),
-                            ),
-                            child: Center(
-                              child: Text("Sign Up",style:
-                              TextStyle(color: Color(0xffC0BEBE), fontFamily: "Sansita", fontSize: 16.sp),),
-                            ),
-                          )
-                      ),
+                            child: Container(
+                              width: 274.w,
+                              height: 46.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(color: Color(0xffC0BEBE)),
+                              ),
+                              child: Center(
+                                child: Text("Sign Up", style:
+                                TextStyle(color: Color(0xffC0BEBE),
+                                    fontFamily: "Sansita",
+                                    fontSize: 16.sp),),
+                              ),
+                            )
+                        ),
                       )
                     ],
                   ),
@@ -176,40 +190,7 @@ class signup_screen extends StatelessWidget {
       ),
     );
   }
-
-  Future signUp(BuildContext context) async{
-    if(emailController.text.isEmpty || passwordController.text.isEmpty) {
-      print("Fields are empty!");
-      return;
-    }
-    // if(Utils.validateEmail(emailController.text) ) {
-    //   print("Invalid email!");
-    //   return;
-    // }
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
-
-    try{
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim()
-      );
-      print("SignIn successfull!");
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => home_page())
-      );
-
-    }on FirebaseAuthException catch(e){
-      print(e);
-    }
-    Navigator.of(context, rootNavigator: true).pop('dialog');
-  }
 }
-
 // import 'package:flutter/material.dart';
 // import 'package:habit_breaker/utils/utils.dart';
 //

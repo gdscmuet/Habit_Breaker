@@ -151,33 +151,6 @@ class login_screen extends StatelessWidget {
       ),
     );
   }
-  Future login(BuildContext context) async{
-    if(emailController.text.isEmpty || passwordController.text.isEmpty) {
-      print("Fields are empty");
-      return;
-    }
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator()),
-    );
-
-    try{
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim()
-      );
-      print("SignIn successfull!");
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => home_page())
-      );
-    }on FirebaseAuthException catch(e){
-      print(e);
-    }
-    Navigator.of(context, rootNavigator: true).pop('dialog');
-
-  }
 }
 
 // import 'package:flutter/material.dart';
