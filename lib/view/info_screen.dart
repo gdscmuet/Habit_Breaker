@@ -18,16 +18,15 @@ class info_screen extends StatelessWidget {
           children: [
             Container(
               // autogroup4n5vEdZ (9Nu4BLLx6UXrqGPiz54N5v)
-              padding:
-                  EdgeInsets.only( left:27.w,top: 51.h,right: 16.w,bottom: 5.h),
+              padding: EdgeInsets.only(
+                  left: 27.w, top: 51.h, right: 16.w, bottom: 5.h),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                     // fillthefollowinginformationAGK (23:79)
-                    margin: EdgeInsets.fromLTRB(
-                        0, 0, 96.w, 50.h),
+                    margin: EdgeInsets.fromLTRB(0, 0, 96.w, 50.h),
                     constraints: BoxConstraints(
                       maxWidth: 212.w,
                     ),
@@ -43,8 +42,7 @@ class info_screen extends StatelessWidget {
                   ),
                   Container(
                     // autogroup4sw2SzX (9Nu3Prej9vd8srGavz4Sw2)
-                    margin: EdgeInsets.fromLTRB(
-                        2.w, 0, 16.w, 40.h),
+                    margin: EdgeInsets.fromLTRB(2.w, 0, 16.w, 40.h),
                     width: double.infinity,
                     height: 164.h,
                     child: Row(
@@ -52,8 +50,7 @@ class info_screen extends StatelessWidget {
                       children: [
                         Container(
                           // autogroupgmccFwy (9Nu3XrRQPygfqV1uZDgmCc)
-                          margin: EdgeInsets.fromLTRB(
-                              0, 0 , 15.w, 0),
+                          margin: EdgeInsets.fromLTRB(0, 0, 15.w, 0),
                           width: 141.w,
                           height: 164.h,
                           decoration: BoxDecoration(
@@ -164,10 +161,8 @@ class info_screen extends StatelessWidget {
                   ),
                   Container(
                     // autogroupzqwu1Lo (9Nu3nbVqdCaVrZL9xXZQWU)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
-                    padding: EdgeInsets.fromLTRB(
-                        24.w, 10.h, 24.w, 10.h),
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
+                    padding: EdgeInsets.fromLTRB(24.w, 10.h, 24.w, 10.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
@@ -186,10 +181,8 @@ class info_screen extends StatelessWidget {
                   ),
                   Container(
                     // autogroupwxh6eef (9Nu3sWXKNGsmrv6uRdWxH6)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
-                    padding: EdgeInsets.fromLTRB(
-                        24.w, 9.h, 24.w, 11.h),
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
+                    padding: EdgeInsets.fromLTRB(24.w, 9.h, 24.w, 11.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
@@ -208,8 +201,7 @@ class info_screen extends StatelessWidget {
                   ),
                   Container(
                     // autogroupmhkuHxX (9Nu3xFtQYRwggSz13eMhkU)
-                    padding: EdgeInsets.fromLTRB(
-                        24.w, 8.h, 24.w, 12.h),
+                    padding: EdgeInsets.fromLTRB(24.w, 8.h, 24.w, 12.h),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),

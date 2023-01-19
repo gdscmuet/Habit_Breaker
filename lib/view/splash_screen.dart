@@ -15,12 +15,11 @@ class scene extends StatelessWidget {
             children: [
               Container(
                 // autogroup3xfruko (9NtxzjUpxNDCXHskFN3xfr)
-                margin:
-                    EdgeInsets.fromLTRB(0 , 0 , 0 , 43),
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 43),
                 padding: EdgeInsets.only(left: 42.w, top: 80.h),
                 width: 612.w,
                 height: 340.h,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
@@ -33,8 +32,7 @@ class scene extends StatelessWidget {
                   children: [
                     Container(
                       // welcomePAB (13:58)
-                      margin: EdgeInsets.fromLTRB(
-                          0 , 0 , 0 , 1 ),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 1),
                       child: Text(
                         'Welcome!',
                         style: TextStyle(

@@ -3,8 +3,8 @@ import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
-class boxShadow extends StatelessWidget {
-  const boxShadow({Key? key}) : super(key: key);
+class shadow_textfield extends StatelessWidget {
+  const shadow_textfield({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class boxShadow extends StatelessWidget {
       decoration: BoxDecoration (
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.r),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
               color: Color.fromRGBO( 152, 144, 144,0.5),
               offset: Offset(-2, -5),

@@ -102,7 +102,6 @@ class login_screen extends StatelessWidget {
                         focusNode: null,
                         nextNode: null,
                         controller: null,
-
                       ),
                       SizedBox(
                         height: 10.h,
@@ -135,6 +134,7 @@ class login_screen extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
+
                       const button2(),
                     ],
                   ),
