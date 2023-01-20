@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
 
 class info_screen extends StatelessWidget {
@@ -162,61 +163,38 @@ class info_screen extends StatelessWidget {
                   Container(
                     // autogroupzqwu1Lo (9Nu3nbVqdCaVrZL9xXZQWU)
                     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
-                    padding: EdgeInsets.fromLTRB(24.w, 10.h, 24.w, 10.h),
+                    height: 32.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
-                    child: Text(
-                      'Nickname',
-                      style: SafeGoogleFont(
-                        'Sansita',
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff8c8989),
-                      ),
-                    ),
+                    child: TextField(),
                   ),
                   Container(
                     // autogroupwxh6eef (9Nu3sWXKNGsmrv6uRdWxH6)
                     margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 5.h),
-                    padding: EdgeInsets.fromLTRB(24.w, 9.h, 24.w, 11.h),
+                    // padding: EdgeInsets.fromLTRB(24.w, 9.h, 24.w, 11.h),
                     width: double.infinity,
+                    height: 32.h,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
-                    child: Text(
-                      'Age',
-                      style: SafeGoogleFont(
-                        'Sansita',
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff8c8989),
-                      ),
-                    ),
+                    child: TextField(),
                   ),
                   Container(
                     // autogroupmhkuHxX (9Nu3xFtQYRwggSz13eMhkU)
-                    padding: EdgeInsets.fromLTRB(24.w, 8.h, 24.w, 12.h),
+                    height: 32.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xff939191)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
-                    child: Text(
-                      'Contact Number',
-                      style: SafeGoogleFont(
-                        'Sansita',
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xff8c8989),
-                      ),
-                    ),
+                    child: TextField(),
                   ),
                 ],
               ),
@@ -251,6 +229,9 @@ class info_screen extends StatelessWidget {
                     left: 40.w,
                     top: 550.h,
                     child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesName.homeScreen);
+                      },
                       child: Container(
                           width: 274.w,
                           height: 46.h,

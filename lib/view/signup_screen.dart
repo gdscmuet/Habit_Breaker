@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../components/button1.dart';
 import '../components/button2.dart';
 import '../components/or_divider.dart';
-import '../components/textfield.dart';
+import '../components/inputfields.dart';
 import '../utils/utils.dart';
 
 class signup_screen extends StatelessWidget {
@@ -163,7 +163,7 @@ class signup_screen extends StatelessWidget {
 // import '../components/button1.dart';
 // import '../components/button2.dart';
 // import '../components/or_divider.dart';
-// import '../components/textfield.dart';
+// import '../components/inputfields.dart';
 //
 // class login_screen extends StatefulWidget {
 //   login_screen({Key? key}) : super(key: key);

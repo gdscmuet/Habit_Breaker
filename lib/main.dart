@@ -11,6 +11,7 @@ import 'package:habit_breaker/view/login_screen.dart';
 import 'package:habit_breaker/view/onboarding_screen.dart';
 import 'package:habit_breaker/view/profile_screen.dart';
 import 'package:habit_breaker/view/search_for_goals.dart';
+import 'package:habit_breaker/view/search_for_goals_2.dart';
 import 'package:habit_breaker/view/signup_screen.dart';
 import 'package:habit_breaker/view/splash_screen.dart';
 
@@ -29,14 +30,16 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: 'Flutter Demo',
-          home: create_new_goal(),
+          home: search_for_goals_2(),
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
           debugShowCheckedModeBanner: false,
+          onGenerateRoute: Routes.onGenerateRoute,
           // onGenerateRoutes: Routes.onGenerateRoute(settings),
         );
       },
+
     );
   }
 }

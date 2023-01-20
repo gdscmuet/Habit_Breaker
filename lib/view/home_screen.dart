@@ -5,14 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_breaker/components/today_challenge_container.dart';
 
 import '../components/boxShadow.dart';
+import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
 
 class home_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
+    // double fem = MediaQuery.of(context).size.width / baseWidth;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -78,40 +79,46 @@ class home_page extends StatelessWidget {
                 SizedBox(
                   height: 25.h,
                 ),
-                Container(
-                  height: 65.h,
-                  width: 357.w,
-                  decoration: BoxDecoration(
-                    color: Color(0xff7FCFCF),
-                    borderRadius: BorderRadius.circular(34.r),
-                  ),
-                  child: Center(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Add a New Goal",
-                          style: SafeGoogleFont(
-                            'Sansita',
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
-                            // height: 1.2 * ffem / fem,
-                            color: Color(0xfffefefe),
+                InkWell(
+                  onTap: ()
+                  {
+                    Navigator.pushNamed(context, RoutesName.createNewGoal);
+                  },
+                  child: Container(
+                    height: 65.h,
+                    width: 357.w,
+                    decoration: BoxDecoration(
+                      color: Color(0xff7FCFCF),
+                      borderRadius: BorderRadius.circular(34.r),
+                    ),
+                    child: Center(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Add a New Goal",
+                            style: SafeGoogleFont(
+                              'Sansita',
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
+                              // height: 1.2 * ffem / fem,
+                              color: Color(0xfffefefe),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 7.w,
-                        ),
-                        Container(
-                          width: 16.w,
-                          height: 16.h,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Icon(Icons.add,
-                              size: 15.sp, color: Color(0xff7FCFCF)),
-                        )
-                      ],
+                          SizedBox(
+                            width: 7.w,
+                          ),
+                          Container(
+                            width: 16.w,
+                            height: 16.h,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                            child: Icon(Icons.add,
+                                size: 15.sp, color: Color(0xff7FCFCF)),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -223,7 +230,7 @@ class home_page extends StatelessWidget {
                         height: double.infinity,
                         decoration: BoxDecoration(
                           color: Color(0xfff3adad),
-                          borderRadius: BorderRadius.circular(20 * fem),
+                          borderRadius: BorderRadius.circular(20.r),
                         ),
                         child: Column(
                           children: [

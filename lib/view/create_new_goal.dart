@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
 
 class create_new_goal extends StatelessWidget {
@@ -163,22 +164,27 @@ class create_new_goal extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),
-                    child: Container(
-                      height: 65.h,
-                      width: 255.w,
-                      decoration: BoxDecoration(
-                        color: Color(0xffFCB346),
-                        borderRadius: BorderRadius.circular(30.r),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Create a Goal",
-                          style: SafeGoogleFont(
-                            'Sansita',
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            // height: 1.2 * ffem / fem,
-                            color: Colors.white,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesName.searchForGoals);
+                      },
+                      child: Container(
+                        height: 65.h,
+                        width: 255.w,
+                        decoration: BoxDecoration(
+                          color: Color(0xffFCB346),
+                          borderRadius: BorderRadius.circular(30.r),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Create a Goal",
+                            style: SafeGoogleFont(
+                              'Sansita',
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w700,
+                              // height: 1.2 * ffem / fem,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

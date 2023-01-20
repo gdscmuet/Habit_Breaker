@@ -22,6 +22,7 @@ class _search_for_goalsState extends State<search_for_goals> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             SizedBox(
               height: 30.h,
             ),
