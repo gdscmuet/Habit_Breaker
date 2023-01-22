@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196239737045",
+    "project_id": "solutionchallenge-ecbfb",
+    "storage_bucket": "solutionchallenge-ecbfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196239737045:android:4e314d1113deaf3c12a25c",
+        "android_client_info": {
+          "package_name": "com.example.habit_breaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196239737045-t62208ghk9ukiqkbo8g6l4ok2ak2h4ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDcSX5S7bpTZXaIAc8DGwDW5fTQK9-1II"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196239737045-t62208ghk9ukiqkbo8g6l4ok2ak2h4ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

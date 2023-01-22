@@ -136,6 +136,40 @@ class login_screen extends StatelessWidget {
                       ),
                       const button2(),
                     ],
+      body: Column(
+        children: [
+          TextFormField(
+            controller: _emailController,
+            keyboardType: TextInputType.emailAddress,
+            focusNode: emailFocusNode,
+            decoration: const InputDecoration(
+                hintText: 'Email',
+                //  labelText: 'Email',
+                prefixIcon: Icon(Icons.alternate_email)),
+            onFieldSubmitted: (valu) {
+              // utils.fieldFocusChange(
+                  // context, emailFocusNode, passwordFocusNode);
+            },
+          ),
+          ValueListenableBuilder(
+              valueListenable: _obsecurePassword,
+              builder: (context, val, child) {
+                return TextFormField(
+                  controller: _passwordController,
+                  obscureText: _obsecurePassword.value,
+                  focusNode: passwordFocusNode,
+                  obscuringCharacter: "*",
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    labelText: 'Password',
+                    prefixIcon: Icon(Icons.lock_open_rounded),
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          _obsecurePassword.value = !_obsecurePassword.value;
+                        },
+                        child: Icon(_obsecurePassword.value
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility)),
                   ),
                 ),
               ),
@@ -146,190 +180,3 @@ class login_screen extends StatelessWidget {
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:habit_breaker/utils/utils.dart';
-//
-//
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-//
-// import '../components/button1.dart';
-// import '../components/button2.dart';
-// import '../components/or_divider.dart';
-// import '../components/inputfields.dart';
-//
-// class login_screen extends StatefulWidget {
-//   login_screen({Key? key}) : super(key: key);
-//
-//   @override
-//   State<login_screen> createState() => _login_screenState();
-// }
-//
-// class _login_screenState extends State<login_screen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     Size size = MediaQuery.of(context).size;
-//     return SafeArea(
-//       child: Scaffold(
-//         resizeToAvoidBottomInset: false,
-//         body: Stack(children: [
-//           Positioned(
-//               top: -91,
-//               left: -40,
-//               child: Image.asset(
-//                 "assets/image1.png",
-//                 fit: BoxFit.cover,
-//                 height: 405.h,
-//                 width: 476.w,
-//               )),
-//           Positioned(
-//             bottom: -120,
-//             left: 50,
-//             child: Image.asset(
-//               "assets/image2.png",
-//               width: 444.w,
-//               height: 400.h,
-//             ),
-//           ),
-//           Positioned(bottom: 0, child: Image.asset("assets/image3.png",
-//             fit: BoxFit.fitWidth,)),
-//           Positioned(
-//            top: 200,
-//             child: Container(
-//               height: 435.h,
-//               width: 317.w,
-//               decoration: BoxDecoration(
-//                   border: Border.all(color: const Color(0xffC0BEBE)),
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.circular(30)),
-//               child: Padding(
-//                 padding: const EdgeInsets.all(22.0),
-//                 child: Column(
-//                   children: [
-//                     inputfields(
-//                       hint_text: 'Email',
-//                       currentNode: null,
-//                       focusNode: null,
-//                       nextNode: null,
-//                       controller: null,
-//                     ),
-//                     SizedBox(
-//                       height: 10.h,
-//                     ),
-//                     inputfields(
-//                       hint_text: 'Password',
-//                       currentNode: null,
-//                       focusNode: null,
-//                       nextNode: null,
-//                       controller: null,
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.only(left: 150),
-//                       child: Text(
-//                         "Forgot Password?",
-//                         style: TextStyle(
-//                             color: Colors.black,
-//                             fontFamily: "Sansita",
-//                             fontSize: 10.sp),
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       height: 32.h,
-//                     ),
-//                     button1(),
-//                     SizedBox(
-//                       height: 25.h,
-//                     ),
-//                     or_line_widget(),
-//                     SizedBox(
-//                       height: 20.h,
-//                     ),
-//                     button2(),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Positioned(
-//               left: 41,
-//               top: 53,
-//               child: const Text(
-//                 "Welcome\n" "Back!",
-//                 style: TextStyle(
-//                     color: Colors.white, fontFamily: "Sansita", fontSize: 36),
-//                 textDirection: TextDirection.ltr,
-//               )),
-//         ]),
-//       ),
-//     );
-//   }
-// }
-//
-//
-//
-//
-//
-//
-// // class login_screen extends StatelessWidget {
-// //   login_screen({Key? key}) : super(key: key);
-// //   final ValueNotifier<bool> _obsecurePassword = ValueNotifier<bool>(true);
-// //   final TextEditingController _emailController = TextEditingController();
-// //   final TextEditingController _passwordController = TextEditingController();
-// //   FocusNode emailFocusNode = FocusNode();
-// //   FocusNode passwordFocusNode = FocusNode();
-// //   @override
-// //   void dispose() {
-// //     _emailController.dispose();
-// //     _passwordController.dispose();
-// //
-// //     emailFocusNode.dispose();
-// //     passwordFocusNode.dispose();
-// //     _obsecurePassword.dispose();
-// //   }
-// //
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       body: Column(
-// //         children: [
-// //           TextFormField(
-// //             controller: _emailController,
-// //             keyboardType: TextInputType.emailAddress,
-// //             focusNode: emailFocusNode,
-// //             decoration: const InputDecoration(
-// //                 hintText: 'Email',
-// //                 //  labelText: 'Email',
-// //                 prefixIcon: Icon(Icons.alternate_email)),
-// //             onFieldSubmitted: (valu) {
-// //               utils.fieldFocusChange(
-// //                   context, emailFocusNode, passwordFocusNode);
-// //             },
-// //           ),
-// //           ValueListenableBuilder(
-// //               valueListenable: _obsecurePassword,
-// //               builder: (context, val, child) {
-// //                 return TextFormField(
-// //                   controller: _passwordController,
-// //                   obscureText: _obsecurePassword.value,
-// //                   focusNode: passwordFocusNode,
-// //                   obscuringCharacter: "*",
-// //                   decoration: InputDecoration(
-// //                     hintText: 'Password',
-// //                     labelText: 'Password',
-// //                     prefixIcon: Icon(Icons.lock_open_rounded),
-// //                     suffixIcon: InkWell(
-// //                         onTap: () {
-// //                           _obsecurePassword.value = !_obsecurePassword.value;
-// //                         },
-// //                         child: Icon(_obsecurePassword.value
-// //                             ? Icons.visibility_off_outlined
-// //                             : Icons.visibility)),
-// //                   ),
-// //                 );
-// //               })
-// //         ],
-// //       ),
-// //     );
-// //   }
-// // }

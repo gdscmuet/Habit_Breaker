@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/utils/routes/Routes.dart';
@@ -15,7 +15,9 @@ import 'package:habit_breaker/view/search_for_goals_2.dart';
 import 'package:habit_breaker/view/signup_screen.dart';
 import 'package:habit_breaker/view/splash_screen.dart';
 
-void main() {
+void main() async{
+WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
