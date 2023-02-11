@@ -61,7 +61,7 @@ class achived_container extends StatelessWidget {
               ),
               Container(
                 height: 32.h,
-                width: 121.w,
+                width: 100.w,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.r),
                     color: Colors.white),

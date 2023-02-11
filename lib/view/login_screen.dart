@@ -32,13 +32,13 @@ class login_screen extends StatelessWidget {
           children: [
             Positioned(
               // ellipse44c3 (19:14)
-              left: -60.w,
-              top: -120.h,
+              left: -48.w,
+              top: -90.h,
               child: Image.asset(
-                'assets/img_2.png',
+                'assets/page-1/images/Ellipse-4-s.png',
                 fit: BoxFit.fitWidth,
                 width: 476.w,
-                height: 405.h,
+                // height: 405.h,
               ),
             ),
             Positioned(
@@ -136,40 +136,40 @@ class login_screen extends StatelessWidget {
                       ),
                       const button2(),
                     ],
-      body: Column(
-        children: [
-          TextFormField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            focusNode: emailFocusNode,
-            decoration: const InputDecoration(
-                hintText: 'Email',
-                //  labelText: 'Email',
-                prefixIcon: Icon(Icons.alternate_email)),
-            onFieldSubmitted: (valu) {
-              // utils.fieldFocusChange(
-                  // context, emailFocusNode, passwordFocusNode);
-            },
-          ),
-          ValueListenableBuilder(
-              valueListenable: _obsecurePassword,
-              builder: (context, val, child) {
-                return TextFormField(
-                  controller: _passwordController,
-                  obscureText: _obsecurePassword.value,
-                  focusNode: passwordFocusNode,
-                  obscuringCharacter: "*",
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    labelText: 'Password',
-                    prefixIcon: Icon(Icons.lock_open_rounded),
-                    suffixIcon: InkWell(
-                        onTap: () {
-                          _obsecurePassword.value = !_obsecurePassword.value;
-                        },
-                        child: Icon(_obsecurePassword.value
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility)),
+      // body: Column(
+      //   children: [
+      //     TextFormField(
+      //       controller: _emailController,
+      //       keyboardType: TextInputType.emailAddress,
+      //       focusNode: emailFocusNode,
+      //       decoration: const InputDecoration(
+      //           hintText: 'Email',
+      //           //  labelText: 'Email',
+      //           prefixIcon: Icon(Icons.alternate_email)),
+      //       onFieldSubmitted: (valu) {
+      //         // utils.fieldFocusChange(
+      //             // context, emailFocusNode, passwordFocusNode);
+      //       },
+      //     ),
+      //     ValueListenableBuilder(
+      //         valueListenable: _obsecurePassword,
+      //         builder: (context, val, child) {
+      //           return TextFormField(
+      //             controller: _passwordController,
+      //             obscureText: _obsecurePassword.value,
+      //             focusNode: passwordFocusNode,
+      //             obscuringCharacter: "*",
+      //             decoration: InputDecoration(
+      //               hintText: 'Password',
+      //               labelText: 'Password',
+      //               prefixIcon: Icon(Icons.lock_open_rounded),
+      //               suffixIcon: InkWell(
+      //                   onTap: () {
+      //                     _obsecurePassword.value = !_obsecurePassword.value;
+      //                   },
+      //                   child: Icon(_obsecurePassword.value
+      //                       ? Icons.visibility_off_outlined
+      //                       : Icons.visibility)),
                   ),
                 ),
               ),

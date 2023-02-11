@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: 'Flutter Demo',
-          home: search_for_goals_2(),
+          home: profile_screen(),
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
