@@ -19,8 +19,8 @@ class Routes{
         return _buildRoute( signup_screen(), settings);
       case RoutesName.homeScreen:
         return _buildRoute( home_page(), settings);
-      case RoutesName.infoScreen:
-        return _buildRoute( info_screen(), settings);
+      // case RoutesName.infoScreen:
+      //   return _buildRoute( info_screen(), settings);
       case RoutesName.profileScreen:
         return _buildRoute( profile_screen(), settings);
       case RoutesName.createNewGoal:

@@ -29,7 +29,7 @@ class onboarding_screen extends StatelessWidget {
               Positioned(
                 top: -45,
                 child: Image.asset(
-                  "assets/page-1/images/Vector-1.png",
+                  "assets/page-1/images/vector-1.png",
                 ),
               ),
               Positioned(

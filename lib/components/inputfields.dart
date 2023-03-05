@@ -9,7 +9,7 @@ class inputfields extends StatelessWidget {
   FocusNode? focusNode;
   IconData? icon;
   Widget? preicon;
-
+  dynamic validator;
   TextInputType? keyboardType;
   // bool? visiblity;
   Function()? onIconPress;
@@ -20,6 +20,7 @@ class inputfields extends StatelessWidget {
     required this.focusNode,
     required this.nextNode,
     required this.controller,
+    this.validator,
     this.icon,
     this.preicon,
     this.onIconPress,
@@ -37,7 +38,8 @@ class inputfields extends StatelessWidget {
       //  color: Colors.white,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
       // ignore: prefer_const_constructors
-      child: TextField(
+      child: 
+      TextFormField(
         style:
         TextStyle(color: Color(0xff7FCFCF), fontFamily: "Sansita", fontSize: 12),
         keyboardType: keyboardType ?? TextInputType.text,
@@ -70,6 +72,7 @@ class inputfields extends StatelessWidget {
             color: Color.fromARGB(255, 65, 61, 61),
           ),
         ),
+        validator:validator,
       ),
     );
   }

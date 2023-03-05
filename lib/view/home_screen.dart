@@ -3,14 +3,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_breaker/components/today_challenge_container.dart';
+import 'package:provider/provider.dart';
 
 import '../components/boxShadow.dart';
+import '../model/UserModel.dart';
 import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
+import '../view_model/UserDetailsProvider.dart';
 
-class home_page extends StatelessWidget {
+class home_page extends StatefulWidget {
+  @override
+  State<home_page> createState() => _home_pageState();
+}
+
+class _home_pageState extends State<home_page> {
+  Future<void> initializeUser() async {
+    await Provider.of<UserDetailsProvider>(context, listen: false)
+        .getUserLocally();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initializeUser();
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserModel? user =
+        Provider.of<UserDetailsProvider>(context, listen: false).userDetails;
+
     double baseWidth = 390;
     // double fem = MediaQuery.of(context).size.width / baseWidth;
 
@@ -38,7 +62,7 @@ class home_page extends StatelessWidget {
                           maxWidth: 100.w,
                         ),
                         child: Text(
-                          'Hello Farheen!',
+                          "hello ${user!.name!}",
                           style: SafeGoogleFont(
                             'Sansita',
                             fontSize: 24.sp,
@@ -80,8 +104,7 @@ class home_page extends StatelessWidget {
                   height: 25.h,
                 ),
                 InkWell(
-                  onTap: ()
-                  {
+                  onTap: () {
                     Navigator.pushNamed(context, RoutesName.createNewGoal);
                   },
                   child: Container(

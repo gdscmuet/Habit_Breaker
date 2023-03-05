@@ -1,16 +1,69 @@
+import 'dart:math';
 import 'dart:ui';
-
-import 'package:another_flushbar/flushbar.dart';
-import 'package:another_flushbar/flushbar_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_route.dart';
 import 'package:google_fonts/google_fonts.dart';
 class utils{
  static toastMessage(String message){
-    Fluttertoast.showToast(msg: message);
+    // Fluttertoast.showToast(msg: message);
+  Fluttertoast.showToast(msg: message);
+  }
+  static String getCurrentUserUid(){
+ return FirebaseAuth.instance.currentUser!.uid;
+  }
+static  String getUid() {
+    return (100000 + Random().nextInt(10000)).toString();
+  }
+  static late BuildContext dialogContext;
+ static showLoading(context){
+    // showDialog(context: context, builder: builder)
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      dialogContext = context;
+      return Dialog(
+        child: new Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            new CircularProgressIndicator(),
+            new Text("Loading"),
+          ],
+        ),
+      );
+    },
+  );
+  }
+ static hideLoading(){
+     Navigator.pop(dialogContext);
+  }
+  static void flushBarErrorMessage(String message, BuildContext context) {
+    showFlushbar(
+      context: context,
+      flushbar: Flushbar(
+        forwardAnimationCurve: Curves.decelerate,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.all(15),
+        message: message,
+        duration: const Duration(seconds: 4),
+        borderRadius: BorderRadius.circular(8),
+        flushbarPosition: FlushbarPosition.TOP,
+        // backgroundColor: const Color.fromARGB(255, 90, 89, 89),
+        backgroundColor: Colors.red,
+        reverseAnimationCurve: Curves.easeInOut,
+        positionOffset: 20,
+        icon: const Icon(
+          Icons.error,
+          size: 28,
+          color: Colors.white,
+        ),
+      )..show(context),
+    );
   }
 }
-
 
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
