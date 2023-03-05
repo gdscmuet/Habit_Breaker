@@ -37,6 +37,7 @@ class _signup_screenState extends State<signup_screen> {
         // userModel.uid = user.uid;
         // userModel.profileImage = await _firebaseRepository.uploadProfileImage(
         //     imageFile: _profileImage!, uid: userModel.uid!);
+        utils.hideLoading();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -266,6 +267,7 @@ class _signup_screenState extends State<signup_screen> {
                                 name: _nameController.text,
                                 email: _emailController.text,
                               );
+                              utils.showLoading(context);
                               _signup(_userModel);
                               // Navigator.pushNamed(context, RoutesName.infoScreen);
                             }

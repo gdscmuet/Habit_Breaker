@@ -1,15 +1,76 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
-import '../components/button1.dart';
+import 'package:habit_breaker/view/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../components/button2.dart';
 import '../components/or_divider.dart';
 import '../components/inputfields.dart';
+import '../model/UserModel.dart';
+import '../resources/StorageService.dart';
+import '../resources/firebase_respository.dart';
+import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
+import '../view_model/UserDetailsProvider.dart';
 
 class login_screen extends StatelessWidget {
+  TextEditingController _emailController = TextEditingController();
+
+  TextEditingController _passController = TextEditingController();
+  final FirebaseRepository _firebaseRepository = FirebaseRepository();
+  void dispose() {
+    _emailController.dispose();
+    _passController.dispose();
+
+    // emailFocusNode.dispose();
+    // passwordFocusNode.dispose();
+    // super.dispose();
+  }
+
+  void _login(context) {
+    utils.showLoading(context);
+    _firebaseRepository
+        .login(_emailController.text, _passController.text, context)
+        .then((User? user) async {
+      if (user != null) {
+        _getUserDetails(user.uid, context);
+      } else {
+        // isLoading(false);
+        utils.hideLoading();
+        //utils.flushBarErrorMessage("Failed to login", context);
+      }
+    });
+  }
+
+  void _getUserDetails(String uid, context) {
+    _firebaseRepository.getUserDetails(uid).then((UserModel? userModel) {
+      if (userModel != null) {
+        StorageService.saveUser(userModel).then((value) async {
+          Provider.of<UserDetailsProvider>(context, listen: false)
+              .getUserLocally();
+
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          await preferences.setInt('initScreen', 1);
+          utils.hideLoading();
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => home_page()));
+        }).catchError((error) {
+          utils.hideLoading();
+          utils.flushBarErrorMessage(error.message.toString(), context);
+        });
+      } else {
+        utils.hideLoading();
+        utils.flushBarErrorMessage("User is null", context);
+      }
+    }).catchError((error) {
+      utils.hideLoading();
+      utils.flushBarErrorMessage(error.message.toString(), context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 390;
@@ -101,7 +162,14 @@ class login_screen extends StatelessWidget {
                         currentNode: null,
                         focusNode: null,
                         nextNode: null,
-                        controller: null,
+                        controller: _emailController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Name";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       SizedBox(
                         height: 10.h,
@@ -111,7 +179,16 @@ class login_screen extends StatelessWidget {
                         currentNode: null,
                         focusNode: null,
                         nextNode: null,
-                        controller: null,
+                        controller: _passController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter password";
+                          } else if (value.length < 6) {
+                            return "password must be 6 characters long";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 190),
@@ -126,7 +203,28 @@ class login_screen extends StatelessWidget {
                       SizedBox(
                         height: 32.h,
                       ),
-                      const button1(),
+                      // const button1(),
+                      InkWell(
+                        child: Container(
+                          width: 274.w,
+                          height: 46.h,
+                          decoration: BoxDecoration(
+                            color: Color(0xffFCB346),
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Center(
+                              child: Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Sansita",
+                                fontSize: 16.sp),
+                          )),
+                        ),
+                        onTap: () {
+                          _login(context);
+                        },
+                      ),
                       SizedBox(
                         height: 25.h,
                       ),

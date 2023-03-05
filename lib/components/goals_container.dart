@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habit_breaker/model/GoalModel.dart';
 
 import '../utils/utils.dart';
 
-
 class goals_container extends StatelessWidget {
-  const goals_container({Key? key}) : super(key: key);
+  GoalModel? goalModel;
+  goals_container({Key? key, required this.goalModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return   Padding(
+    return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Container(
         height: 147.h,
@@ -24,8 +25,7 @@ class goals_container extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 23.0, right: 23, top: 22),
+              padding: const EdgeInsets.only(left: 23.0, right: 23, top: 22),
               child: Row(
                 children: [
                   Container(
@@ -44,7 +44,7 @@ class goals_container extends StatelessWidget {
                     width: 5.w,
                   ),
                   Text(
-                    "Created by XYZ",
+                    goalModel!.userName!,
                     style: SafeGoogleFont(
                       'Sansita',
                       fontSize: 12.sp,
@@ -62,10 +62,10 @@ class goals_container extends StatelessWidget {
               child: Text(
                 // textDirection: ,
                 textAlign: TextAlign.center,
-                "Learn Flutter",
+                goalModel!.goalName!,
                 style: SafeGoogleFont(
                   'Sansita',
-                  fontSize: 24.sp,
+                  fontSize: 25.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.blue,
                 ),

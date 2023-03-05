@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/components/goals_container.dart';
 
+import '../model/GoalModel.dart';
+import '../resources/firebase_methods.dart';
 import '../utils/utils.dart';
 
 class search_for_goals extends StatefulWidget {
@@ -22,7 +24,6 @@ class _search_for_goalsState extends State<search_for_goals> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             SizedBox(
               height: 30.h,
             ),
@@ -84,14 +85,70 @@ class _search_for_goalsState extends State<search_for_goals> {
             SizedBox(
               height: 12.h,
             ),
-            Wrap(
-              spacing: 15,
-              children: const [
-                goals_container(),
-                goals_container(),
-                goals_container(),
-                goals_container(),
-              ],
+            // Wrap(
+            //   spacing: 15,
+            //   children: const [
+            //     goals_container(),
+            //     goals_container(),
+            //     goals_container(),
+            //     goals_container(),
+            //   ],
+            // ),
+            FutureBuilder(
+              builder: (ctx, AsyncSnapshot<List<GoalModel>> snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: GridView.builder(
+                      // controller: _scrollViewController,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                                // onTap: () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => AdPage(
+                                //             hostel: snapshot.data![index])),
+                                //   );
+                                // },
+                                child: goals_container(
+                              goalModel: snapshot.data![index],
+                            )),
+                          ],
+                        );
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                      ),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return CircularProgressIndicator();
+                }
+                // Displaying LoadingSpinner to indicate waiting state
+                return Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return const CircularProgressIndicator();
+                    },
+                  ),
+                );
+              },
+              future: FirebaseMethods.getGoals(),
             ),
             SizedBox(
               height: 8.h,
@@ -110,12 +167,14 @@ class _search_for_goalsState extends State<search_for_goals> {
                 ),
               ),
             ),
-            SizedBox(height: 8,),
+            SizedBox(
+              height: 8,
+            ),
             Container(
               height: 59.h,
               width: 366.w,
               decoration: BoxDecoration(
-                color:const Color(0xffCEA3D7),
+                color: const Color(0xffCEA3D7),
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Center(

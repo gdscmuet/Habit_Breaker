@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/model/GoalModel.dart';
+import 'package:provider/provider.dart';
 
 import '../components/inputfields.dart';
+import '../model/UserModel.dart';
 import '../resources/firebase_respository.dart';
 import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
+import '../view_model/UserDetailsProvider.dart';
 
 class create_new_goal extends StatelessWidget {
   create_new_goal({Key? key}) : super(key: key);
 
-final TextEditingController _goalController=TextEditingController();
+  final TextEditingController _goalController = TextEditingController();
 
-final TextEditingController _deadlineController=TextEditingController();
+  final TextEditingController _deadlineController = TextEditingController();
 
-final TextEditingController _categoryController=TextEditingController();
+  final TextEditingController _categoryController = TextEditingController();
 
   final FirebaseRepository _firebaseRepository = FirebaseRepository();
 
   void _saveGoal(GoalModel goalModel, context) {
     utils.showLoading(context);
     _firebaseRepository.saveGoalToFirestore(goalModel).then((value) async {
-  
+      utils.hideLoading();
+      utils.toastMessage("goal added");
     }).catchError((error) {
       utils.hideLoading();
       utils.flushBarErrorMessage(error.message.toString(), context);
@@ -30,56 +34,59 @@ final TextEditingController _categoryController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+     UserModel? user =
+        Provider.of<UserDetailsProvider>(context, listen: false).userDetails;
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 70,
-                left: 82,
-                child: Container(
-                  decoration:
-                      const BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.29),
-                      offset: Offset(3, 5),
-                      spreadRadius: 5,
-                      blurRadius: 4,
-                    ),
-                  ]),
-                  height: 238.h,
-                  width: 238.w,
-                ),
-              ),
-              Positioned(
-                top: -222,
-                left: -156,
-                child: Image.asset(
-                  "assets/page-1/images/vector-1-dhm.png",
-                  width: 786.w,
-                  height: 530.h,
-                ),
-              ),
-              Positioned(
-                top: 70,
-                left: 82,
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 18, color: Colors.white)),
-                  height: 238.h,
-                  width: 238.w,
-                  child: CircleAvatar(
-                    backgroundImage:
-                        AssetImage("assets/page-1/images/ellipse-7.png"),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: [
+            Positioned(
+              top: 70,
+              left: 82,
+              child: Container(
+                decoration:
+                    const BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.29),
+                    offset: Offset(3, 5),
+                    spreadRadius: 5,
+                    blurRadius: 4,
                   ),
+                ]),
+                height: 238.h,
+                width: 238.w,
+              ),
+            ),
+            Positioned(
+              top: -222,
+              left: -156,
+              child: Image.asset(
+                "assets/page-1/images/vector-1-dhm.png",
+                width: 786.w,
+                height: 530.h,
+              ),
+            ),
+            Positioned(
+              top: 70,
+              left: 82,
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 18, color: Colors.white)),
+                height: 238.h,
+                width: 238.w,
+                child: CircleAvatar(
+                  backgroundImage:
+                      AssetImage("assets/page-1/images/ellipse-7.png"),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 40.0, right: 40),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0, right: 40),
+              child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +208,7 @@ final TextEditingController _categoryController=TextEditingController();
                         color: Colors.black54,
                       ),
                     ),
-                     inputfields(
+                    inputfields(
                       hint_text: 'Category',
                       currentNode: null,
                       focusNode: null,
@@ -222,13 +229,15 @@ final TextEditingController _categoryController=TextEditingController();
                       padding: const EdgeInsets.only(left: 10.0),
                       child: InkWell(
                         onTap: () {
-                          GoalModel _goalModel=GoalModel(
+                          GoalModel _goalModel = GoalModel(
+                            uid: utils.getUid(),
+                            userUid: utils.getCurrentUserUid(),
                             goalName: _goalController.text,
+                            userName: user!.name,
                             category: _categoryController.text,
                             deadline: _deadlineController.text,
-                            uid: utils.getUid(),
                           );
-                          _saveGoal(_goalModel,context);
+                          _saveGoal(_goalModel, context);
                           // Navigator.pushNamed(
                           //     context, RoutesName.searchForGoals);
                         },
@@ -256,9 +265,9 @@ final TextEditingController _categoryController=TextEditingController();
                     ),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

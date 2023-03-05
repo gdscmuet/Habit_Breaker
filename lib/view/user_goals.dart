@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/components/achived_container.dart';
 import 'package:habit_breaker/components/goal_achive_container.dart';
 
+import '../model/GoalModel.dart';
+import '../resources/firebase_methods.dart';
 import '../utils/utils.dart';
 
-class search_for_goals_2 extends StatelessWidget {
-  const search_for_goals_2({Key? key}) : super(key: key);
+class user_goals extends StatelessWidget {
+  const user_goals({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,18 +82,75 @@ class search_for_goals_2 extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            goal_achive_container(),
-            SizedBox(
-              height: 10.h,
+            FutureBuilder(
+              builder: (ctx, AsyncSnapshot<List<GoalModel>> snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: GridView.builder(
+                      // controller: _scrollViewController,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                                // onTap: () {
+                                //   Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => AdPage(
+                                //             hostel: snapshot.data![index])),
+                                //   );
+                                // },
+                                child: goal_achive_container(
+                              goalModel: snapshot.data![index],
+                            )),
+                          ],
+                        );
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 10,
+                      ),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return CircularProgressIndicator();
+                }
+                // Displaying LoadingSpinner to indicate waiting state
+                return Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return const CircularProgressIndicator();
+                    },
+                  ),
+                );
+              },
+              future:
+                  FirebaseMethods.getUserGoals(uid: utils.getCurrentUserUid()),
             ),
-            goal_achive_container(),
-            SizedBox(
-              height: 10.h,
-            ),
-            goal_achive_container(),
-            SizedBox(
-              height: 17.h,
-            ),
+            // goal_achive_container(),
+            // SizedBox(
+            //   height: 10.h,
+            // ),
+            // goal_achive_container(),
+            // SizedBox(
+            //   height: 10.h,
+            // ),
+            // goal_achive_container(),
+            // SizedBox(
+            //   height: 17.h,
+            // ),
             Container(
               width: 70.w,
               child: Row(
@@ -124,7 +183,9 @@ class search_for_goals_2 extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 11.h,),
+            SizedBox(
+              height: 11.h,
+            ),
             achived_container(),
           ],
         ),

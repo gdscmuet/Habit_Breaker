@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habit_breaker/model/GoalModel.dart';
 
 import '../utils/utils.dart';
 
 class goal_achive_container extends StatelessWidget {
-  const goal_achive_container({Key? key}) : super(key: key);
+  GoalModel? goalModel;
+  goal_achive_container({Key? key, this.goalModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class goal_achive_container extends StatelessWidget {
                     width: 10.w,
                   ),
                   Text(
-                    "Created by XYZ",
+                    goalModel!.userName!,
                     style: SafeGoogleFont(
                       'Sansita',
                       fontSize: 10.sp,
@@ -50,7 +52,7 @@ class goal_achive_container extends StatelessWidget {
                 ],
               ),
               Text(
-                "Deadline: 5 days",
+                goalModel!.deadline!,
                 style: SafeGoogleFont(
                   'Sansita',
                   fontSize: 10.sp,
@@ -71,7 +73,7 @@ class goal_achive_container extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Learn Flutter",
+                    goalModel!.goalName!,
                     style: SafeGoogleFont(
                       'Sansita',
                       fontSize: 15.sp,

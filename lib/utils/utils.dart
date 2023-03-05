@@ -6,40 +6,52 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:google_fonts/google_fonts.dart';
-class utils{
- static toastMessage(String message){
+
+class utils {
+  static toastMessage(String message) {
     // Fluttertoast.showToast(msg: message);
-  Fluttertoast.showToast(msg: message);
+    Fluttertoast.showToast(msg: message);
   }
-  static String getCurrentUserUid(){
- return FirebaseAuth.instance.currentUser!.uid;
+
+  static String getCurrentUserUid() {
+    return FirebaseAuth.instance.currentUser!.uid;
   }
-static  String getUid() {
+
+  static String getUid() {
     return (100000 + Random().nextInt(10000)).toString();
   }
+
   static late BuildContext dialogContext;
- static showLoading(context){
+  static showLoading(context) {
     // showDialog(context: context, builder: builder)
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (BuildContext context) {
-      dialogContext = context;
-      return Dialog(
-        child: new Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            new CircularProgressIndicator(),
-            new Text("Loading"),
-          ],
-        ),
-      );
-    },
-  );
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        dialogContext = context;
+        return Dialog(
+          child: new Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              new CircularProgressIndicator(),
+              new Text("Loading"),
+            ],
+          ),
+        );
+      },
+    );
   }
- static hideLoading(){
-     Navigator.pop(dialogContext);
+
+  static hideLoading() {
+    // Future.delayed(const Duration(milliseconds: 1), () {
+    //   Navigator.of(dialogContext, rootNavigator: true).pop();
+    // });
+    Navigator.pop(dialogContext);
+    // Future.delayed(Duration.zero, () {
+    //   Navigator.pop(dialogContext);
+    // });
   }
+
   static void flushBarErrorMessage(String message, BuildContext context) {
     showFlushbar(
       context: context,
@@ -65,37 +77,36 @@ static  String getUid() {
   }
 }
 
-
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }
 
 TextStyle SafeGoogleFont(
-    String fontFamily, {
-      TextStyle? textStyle,
-      Color? color,
-      Color? backgroundColor,
-      double? fontSize,
-      FontWeight? fontWeight,
-      FontStyle? fontStyle,
-      double? letterSpacing,
-      double? wordSpacing,
-      TextBaseline? textBaseline,
-      double? height,
-      Locale? locale,
-      Paint? foreground,
-      Paint? background,
-      List<Shadow>? shadows,
-      List<FontFeature>? fontFeatures,
-      TextDecoration? decoration,
-      Color? decorationColor,
-      TextDecorationStyle? decorationStyle,
-      double? decorationThickness,
-    }) {
+  String fontFamily, {
+  TextStyle? textStyle,
+  Color? color,
+  Color? backgroundColor,
+  double? fontSize,
+  FontWeight? fontWeight,
+  FontStyle? fontStyle,
+  double? letterSpacing,
+  double? wordSpacing,
+  TextBaseline? textBaseline,
+  double? height,
+  Locale? locale,
+  Paint? foreground,
+  Paint? background,
+  List<Shadow>? shadows,
+  List<FontFeature>? fontFeatures,
+  TextDecoration? decoration,
+  Color? decorationColor,
+  TextDecorationStyle? decorationStyle,
+  double? decorationThickness,
+}) {
   try {
     return GoogleFonts.getFont(
       fontFamily,

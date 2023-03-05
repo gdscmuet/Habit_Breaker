@@ -51,6 +51,7 @@ class _info_screenState extends State<info_screen> {
       utils.flushBarErrorMessage(error.message.toString(), context);
     });
   }
+
   @override
   void dispose() {
     _ageController.dispose();
@@ -250,13 +251,13 @@ class _info_screenState extends State<info_screen> {
                         focusNode: null,
                         nextNode: null,
                         controller: _phoneController,
-                        // validator: (value) {
-                        //   if (value!.isEmpty) {
-                        //     return "Enter Phone";
-                        //   } else {
-                        //     return null;
-                        //   }
-                        // },
+                        validator: (value) {
+                          if (value!.isEmpty || value.length == 11) {
+                            return "Enter Phone";
+                          } else {
+                            return null;
+                          }
+                        },
                         // icon: (Icons.check),
                       ),
 
@@ -338,7 +339,7 @@ class _info_screenState extends State<info_screen> {
                               email: widget.userModel!.email,
                               age: _ageController.text,
                               gender: _genderController.text,
-                              phone: "03103443222",
+                              phone: _phoneController.text,
                               uid: utils.getCurrentUserUid(),
                             );
                             utils.showLoading(context);
