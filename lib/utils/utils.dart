@@ -13,9 +13,7 @@ class utils {
     Fluttertoast.showToast(msg: message);
   }
 
-  static String getCurrentUserUid() {
-    return FirebaseAuth.instance.currentUser!.uid;
-  }
+  static String get CurrentUserUid => FirebaseAuth.instance.currentUser!.uid;
 
   static String getUid() {
     return (100000 + Random().nextInt(10000)).toString();
