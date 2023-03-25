@@ -34,7 +34,8 @@ class _home_pageState extends State<home_page> {
   Widget build(BuildContext context) {
     UserModel? user =
         Provider.of<UserDetailsProvider>(context, listen: false).userDetails;
-
+// print("in home screen");
+// print(user!.name!);
     double baseWidth = 390;
     // double fem = MediaQuery.of(context).size.width / baseWidth;
 
@@ -79,7 +80,7 @@ class _home_pageState extends State<home_page> {
                           // ellipse6z35 (43:2)
                           width: 60.w,
                           height: 60.h,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                 image: AssetImage(

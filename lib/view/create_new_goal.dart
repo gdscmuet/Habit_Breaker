@@ -231,7 +231,7 @@ class create_new_goal extends StatelessWidget {
                         onTap: () {
                           GoalModel _goalModel = GoalModel(
                             uid: utils.getUid(),
-                            userUid: utils.getCurrentUserUid(),
+                            userUid: utils.getCurrentUserUid,
                             goalName: _goalController.text,
                             userName: user!.name,
                             category: _categoryController.text,

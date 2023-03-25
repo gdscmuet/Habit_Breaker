@@ -340,7 +340,7 @@ class _info_screenState extends State<info_screen> {
                               age: _ageController.text,
                               gender: _genderController.text,
                               phone: _phoneController.text,
-                              uid: utils.getCurrentUserUid(),
+                              uid: utils.getCurrentUserUid,
                             );
                             utils.showLoading(context);
                             _saveUser(_userModel);

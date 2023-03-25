@@ -2,11 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_breaker/utils/routes/Routes.dart';
+import 'package:habit_breaker/view/connection_request.dart';
 import 'package:habit_breaker/view/home_screen.dart';
 import 'package:habit_breaker/view/login_screen.dart';
+import 'package:habit_breaker/view/onboarding_screen.dart';
 import 'package:habit_breaker/view/search_for_goals.dart';
+import 'package:habit_breaker/view/user_connections.dart';
 import 'package:habit_breaker/view/user_goals.dart';
-import 'package:habit_breaker/view/signup_screen.dart';
 import 'package:habit_breaker/view_model/UserDetailsProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +33,12 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp(
             title: 'Flutter Demo',
-            // home: onboarding_screen(),
-            home: user_goals(),
+            // home: home_page(),
+            // home: login_screen(),
+            // home: UserConnections(),
+            home: ConnectionRequest(),
+            // home: search_for_goals(),
+
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),

@@ -84,60 +84,76 @@ class user_goals extends StatelessWidget {
             ),
             FutureBuilder(
               builder: (ctx, AsyncSnapshot<List<GoalModel>> snapshot) {
-                if (snapshot.hasData) {
-                  return Container(
-                    height: MediaQuery.of(context).size.height,
-                    child: GridView.builder(
-                      // controller: _scrollViewController,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                                // onTap: () {
-                                //   Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => AdPage(
-                                //             hostel: snapshot.data![index])),
-                                //   );
-                                // },
-                                child: goal_achive_container(
-                              goalModel: snapshot.data![index],
-                            )),
-                          ],
-                        );
-                      },
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                    ),
-                  );
+                if (snapshot.data == null) {
+                  return Center(child: Text("No goals created"));
                 } else if (snapshot.hasError) {
                   return CircularProgressIndicator();
+                } else if (snapshot.data!.length == 0) {
+                  return Center(child: Text("No goals created"));
+                } else {
+                  return Container(
+                      height: MediaQuery.of(context).size.height,
+                      child: ListView.builder(
+                          // the number of items in the list
+                          itemCount: snapshot.data!.length,
+
+                          // display each item of the product list
+                          itemBuilder: (context, index) {
+                            return GoalArchiveContainer(
+                              goalModel: snapshot.data![index],
+                            );
+                          })
+
+                      // GridView.builder(
+                      //   // controller: _scrollViewController,
+                      //   itemCount: snapshot.data!.length,
+                      //   itemBuilder: (context, index) {
+                      //     return Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       mainAxisAlignment: MainAxisAlignment.start,
+                      //       children: [
+                      //         InkWell(
+                      //             // onTap: () {
+                      //             //   Navigator.push(
+                      //             //     context,
+                      //             //     MaterialPageRoute(
+                      //             //         builder: (context) => AdPage(
+                      //             //             hostel: snapshot.data![index])),
+                      //             //   );
+                      //             // },
+                      //             child: goal_achive_container(
+                      //           goalModel: snapshot.data![index],
+                      //         )),
+                      //       ],
+                      //     );
+                      //   },
+                      //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      //     crossAxisCount: 1,
+                      //     mainAxisSpacing: 10,
+                      //     crossAxisSpacing: 10,
+                      //   ),
+                      // ),
+                      );
                 }
                 // Displaying LoadingSpinner to indicate waiting state
-                return Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return const CircularProgressIndicator();
-                    },
-                  ),
-                );
+                // return Container(
+                //   height: MediaQuery.of(context).size.height,
+                //   child: GridView.builder(
+                //     itemCount: 1,
+                //     gridDelegate:
+                //         const SliverGridDelegateWithFixedCrossAxisCount(
+                //       crossAxisCount: 1,
+                //       mainAxisSpacing: 10,
+                //       crossAxisSpacing: 10,
+                //     ),
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return const CircularProgressIndicator();
+                //     },
+                //   ),
+                // );
               },
               future:
-                  FirebaseMethods.getUserGoals(uid: utils.getCurrentUserUid()),
+                  FirebaseMethods.getUserGoals(uid: utils.getCurrentUserUid),
             ),
             // goal_achive_container(),
             // SizedBox(
@@ -163,15 +179,15 @@ class user_goals extends StatelessWidget {
                       thickness: 1,
                     )),
                   ),
-                  Text(
-                    "Acheived",
-                    style: SafeGoogleFont(
-                      'poppins',
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey.shade500,
-                    ),
-                  ),
+                  // Text(
+                  //   "Acheived",
+                  //   style: SafeGoogleFont(
+                  //     'poppins',
+                  //     fontSize: 13.sp,
+                  //     fontWeight: FontWeight.w400,
+                  //     color: Colors.grey.shade500,
+                  //   ),
+                  // ),
                   Expanded(
                     child: Container(
                         // margin: const EdgeInsets.only(left: 5.0, right: 1.0),
@@ -183,10 +199,10 @@ class user_goals extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 11.h,
-            ),
-            achived_container(),
+            // SizedBox(
+            //   height: 11.h,
+            // ),
+            // achived_container(),
           ],
         ),
       ),

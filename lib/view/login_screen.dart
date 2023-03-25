@@ -31,7 +31,7 @@ class login_screen extends StatelessWidget {
   }
 
   void _login(context) {
-    utils.showLoading(context);
+    // utils.showLoading(context);
     _firebaseRepository
         .login(_emailController.text, _passController.text, context)
         .then((User? user) async {
@@ -39,8 +39,8 @@ class login_screen extends StatelessWidget {
         _getUserDetails(user.uid, context);
       } else {
         // isLoading(false);
-        utils.hideLoading();
-        //utils.flushBarErrorMessage("Failed to login", context);
+        // utils.hideLoading();
+        utils.flushBarErrorMessage("Invalid Email or password", context);
       }
     });
   }
@@ -51,22 +51,22 @@ class login_screen extends StatelessWidget {
         StorageService.saveUser(userModel).then((value) async {
           Provider.of<UserDetailsProvider>(context, listen: false)
               .getUserLocally();
-
+         
           SharedPreferences preferences = await SharedPreferences.getInstance();
           await preferences.setInt('initScreen', 1);
-          utils.hideLoading();
+          // utils.hideLoading();
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => home_page()));
         }).catchError((error) {
-          utils.hideLoading();
+          // utils.hideLoading();
           utils.flushBarErrorMessage(error.message.toString(), context);
         });
       } else {
-        utils.hideLoading();
+        // utils.hideLoading();
         utils.flushBarErrorMessage("User is null", context);
       }
     }).catchError((error) {
-      utils.hideLoading();
+      // utils.hideLoading();
       utils.flushBarErrorMessage(error.message.toString(), context);
     });
   }

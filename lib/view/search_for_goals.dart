@@ -18,8 +18,7 @@ class _search_for_goalsState extends State<search_for_goals> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 23, right: 23),
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +97,7 @@ class _search_for_goalsState extends State<search_for_goals> {
               builder: (ctx, AsyncSnapshot<List<GoalModel>> snapshot) {
                 if (snapshot.hasData) {
                   return Container(
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height * 0.9,
                     child: GridView.builder(
                       // controller: _scrollViewController,
                       itemCount: snapshot.data!.length,
@@ -122,7 +121,8 @@ class _search_for_goalsState extends State<search_for_goals> {
                           ],
                         );
                       },
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,

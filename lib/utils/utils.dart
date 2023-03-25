@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
@@ -13,10 +14,11 @@ class utils {
     Fluttertoast.showToast(msg: message);
   }
 
-  static String getCurrentUserUid() {
-    return FirebaseAuth.instance.currentUser!.uid;
-  }
-
+  // static String getCurrentUserUid() {
+  //   return FirebaseAuth.instance.currentUser!.uid;
+  // }
+static String get getCurrentUserUid => FirebaseAuth.instance.currentUser!.uid;
+  
   static String getUid() {
     return (100000 + Random().nextInt(10000)).toString();
   }
@@ -30,12 +32,25 @@ class utils {
       builder: (BuildContext context) {
         dialogContext = context;
         return Dialog(
-          child: new Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              new CircularProgressIndicator(),
-              new Text("Loading"),
-            ],
+          // The background color
+          backgroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: SizedBox(
+              height: 100.h,
+              width: 20.w,
+              child: Column(
+                // mainAxisSize: MainAxisSize.min,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  // Some text
+                  Text('Uploading... ')
+                ],
+              ),
+            ),
           ),
         );
       },
@@ -46,7 +61,12 @@ class utils {
     // Future.delayed(const Duration(milliseconds: 1), () {
     //   Navigator.of(dialogContext, rootNavigator: true).pop();
     // });
-    Navigator.pop(dialogContext);
+    // Navigator.pop(dialogContext);
+
+    Future.delayed(Duration.zero, () {
+      // Navigator.pop(context);
+      Navigator.of(dialogContext, rootNavigator: true).pop();
+    });
     // Future.delayed(Duration.zero, () {
     //   Navigator.pop(dialogContext);
     // });

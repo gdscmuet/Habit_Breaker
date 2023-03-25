@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:habit_breaker/model/ConnectionRequestModel.dart';
 
 import '../model/GoalModel.dart';
 import '../model/UserModel.dart';
@@ -10,6 +11,16 @@ class FirebaseRepository{
       
   Future<User?> login(String email, String password, context) =>
       _firebaseMethods.login(email, password, context);
+
+Future<void> sentConnectionRequest({required ConnectionRequestModel requestModel}) =>
+      _firebaseMethods.sentConnectionRequest(requestModel);
+
+
+Future<void> declineConnectionRequest({required ConnectionRequestModel requestModel}) =>
+      _firebaseMethods.declineConnectionRequest(requestModel);
+
+Future<void> acceptConnectionRequest({required ConnectionRequestModel requestModel}) =>
+      _firebaseMethods.accpetConnectionRequest(requestModel);
 
   Future<UserModel?> getUserDetails(String? uid) =>
       _firebaseMethods.getUserDetails(uid);
