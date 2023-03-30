@@ -111,11 +111,11 @@ class _home_pageState extends State<home_page> {
                       if (snapshot.data == null) {
                         return const Center(child: Text("No goals created"));
                       } else if (snapshot.hasError) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else if (snapshot.data!.length == 0) {
-                        return Center(child: Text("No goals created"));
+                        return const Center(child: Text("No goals created"));
                       } else {
-                        return Container(
+                        return SizedBox(
                             height: MediaQuery.of(context).size.height,
                             child: ListView.builder(
                                 // the number of items in the list
