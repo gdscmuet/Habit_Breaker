@@ -2,14 +2,17 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 
+import '../model/GoalModel.dart';
 import '../utils/utils.dart';
 
 class today_challenge_container extends StatelessWidget {
-  const today_challenge_container({Key? key}) : super(key: key);
+  final GoalModel model;
+  const today_challenge_container({Key? key, required this.model})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       // autogroupzydwi11 (9Ntt9xP1MUK1RaLRE9zYdW)
       width: double.infinity,
       height: 226.h,
@@ -35,12 +38,11 @@ class today_challenge_container extends StatelessWidget {
               blurRadius: 1,
               inset: true),
           BoxShadow(
-              color: Color.fromRGBO(152, 144, 144,0.25),
+              color: Color.fromRGBO(152, 144, 144, 0.25),
               offset: Offset(1, 2),
               spreadRadius: 0.1,
               blurRadius: 0.2,
-              inset: true
-          ),
+              inset: true),
         ],
         borderRadius: BorderRadius.circular(40.r),
       ),
@@ -67,7 +69,7 @@ class today_challenge_container extends StatelessWidget {
                       ),
                       Container(
                         // autogrouphgwk4sV (9Nttubnx3vgiKufNyGhgWk)
-                        width: 73.w,
+                        width: 80.w,
                         height: 26.h,
                         decoration: BoxDecoration(
                           color: Color(0xa5e1c3e7),
@@ -75,7 +77,7 @@ class today_challenge_container extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            'Workout',
+                            "Today's Challange",
                             style: SafeGoogleFont(
                               'Sansita',
                               fontSize: 9.sp,
@@ -91,11 +93,10 @@ class today_challenge_container extends StatelessWidget {
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Welcome Back!',
+                            model.category!,
                             style: SafeGoogleFont(
                               'Sansita',
                               fontSize: 14.sp,
@@ -105,7 +106,7 @@ class today_challenge_container extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Today’s Challenge',
+                            model.goalName!,
                             style: SafeGoogleFont(
                               'Sansita',
                               fontSize: 20.sp,
@@ -124,7 +125,7 @@ class today_challenge_container extends StatelessWidget {
                   // autogroup1vfzb8f (9NtuAG3Bzgxrka2oT31vfz)
                   height: 50.h,
                   child: ListView.builder(
-                    itemCount: 6,
+                    itemCount: 4,
                     scrollDirection: Axis.horizontal,
                     // crossAxisAlignment: CrossAxisAlignment.center,
                     itemBuilder: (BuildContext context, int index) {
@@ -140,7 +141,7 @@ class today_challenge_container extends StatelessWidget {
                           ),
                           child: Center(
                             child: Text(
-                              index.toString(),
+                              (index + 1).toString(),
                               style: SafeGoogleFont(
                                 'Sansita',
                                 fontSize: 8.sp,
@@ -168,7 +169,7 @@ class today_challenge_container extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned(
-                  // rectangle95Voh (11:12)
+                    // rectangle95Voh (11:12)
                     left: -7.w,
                     top: 0.h,
                     child: Image.asset(
@@ -180,25 +181,8 @@ class today_challenge_container extends StatelessWidget {
                   // rectangle104oJb (13:44)
                   left: 40.w,
                   top: 90.h,
-                  child: Image.asset(
-                      "assets/page-1/images/capsule_small.png"),
+                  child: Image.asset("assets/page-1/images/capsule_small.png"),
                 ),
-                // 'assets/page-1/casual-female-welcoming-out-pose-4851367-4046990-1.png',
-                // Positioned(
-                //   // casualfemalewelcomingoutpose48 (11:13)
-                //   left: 4.7670898438 * fem,
-                //   top: 0 * fem,
-                //   child: Align(
-                //     child: SizedBox(
-                //       width: 136 * fem,
-                //       height: 177 * fem,
-                //       child: Image.asset(
-                //         'assets/page-1/casual-female-welcoming-out-pose-4851367-4046990-1.png',
-                //         fit: BoxFit.cover,
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 Positioned(
                   // casualfemalewelcomingoutpose48 (11:13)
                   left: 0.7670898438,

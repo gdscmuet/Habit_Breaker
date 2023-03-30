@@ -6,7 +6,9 @@ import 'package:habit_breaker/components/today_challenge_container.dart';
 import 'package:provider/provider.dart';
 
 import '../components/boxShadow.dart';
+import '../model/GoalModel.dart';
 import '../model/UserModel.dart';
+import '../resources/firebase_methods.dart';
 import '../utils/routes/RoutesName.dart';
 import '../utils/utils.dart';
 import '../view_model/UserDetailsProvider.dart';
@@ -27,6 +29,7 @@ class _home_pageState extends State<home_page> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {});
     initializeUser();
   }
 
@@ -100,7 +103,35 @@ class _home_pageState extends State<home_page> {
                 SizedBox(
                   height: 32.h,
                 ),
-                today_challenge_container(),
+                Container(
+                  height: 330.h,
+                  width: 350.w,
+                  child: FutureBuilder(
+                    builder: (ctx, AsyncSnapshot<List<GoalModel>> snapshot) {
+                      if (snapshot.data == null) {
+                        return const Center(child: Text("No goals created"));
+                      } else if (snapshot.hasError) {
+                        return CircularProgressIndicator();
+                      } else if (snapshot.data!.length == 0) {
+                        return Center(child: Text("No goals created"));
+                      } else {
+                        return Container(
+                            height: MediaQuery.of(context).size.height,
+                            child: ListView.builder(
+                                // the number of items in the list
+                                itemCount: snapshot.data!.length,
+                                // display each item of the product list
+                                itemBuilder: (context, index) {
+                                  return today_challenge_container(
+                                    model: snapshot.data![index],
+                                  );
+                                }));
+                      }
+                    },
+                    future: FirebaseMethods.getUserGoals(
+                        uid: utils.getCurrentUserUid),
+                  ),
+                ),
                 SizedBox(
                   height: 25.h,
                 ),

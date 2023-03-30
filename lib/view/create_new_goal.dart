@@ -22,19 +22,20 @@ class create_new_goal extends StatelessWidget {
   final FirebaseRepository _firebaseRepository = FirebaseRepository();
 
   void _saveGoal(GoalModel goalModel, context) {
-    utils.showLoading(context);
+    // utils.showLoading(context);
     _firebaseRepository.saveGoalToFirestore(goalModel).then((value) async {
-      utils.hideLoading();
+      // utils.hideLoading();
       utils.toastMessage("goal added");
+      Navigator.pushNamed(context, RoutesName.homeScreen);
     }).catchError((error) {
-      utils.hideLoading();
+      // utils.hideLoading();
       utils.flushBarErrorMessage(error.message.toString(), context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-     UserModel? user =
+    UserModel? user =
         Provider.of<UserDetailsProvider>(context, listen: false).userDetails;
 
     return Scaffold(

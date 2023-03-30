@@ -7,6 +7,7 @@ import 'package:habit_breaker/view/home_screen.dart';
 import 'package:habit_breaker/view/login_screen.dart';
 import 'package:habit_breaker/view/onboarding_screen.dart';
 import 'package:habit_breaker/view/search_for_goals.dart';
+import 'package:habit_breaker/view/signup_screen.dart';
 import 'package:habit_breaker/view/user_connections.dart';
 import 'package:habit_breaker/view/user_goals.dart';
 import 'package:habit_breaker/view_model/UserDetailsProvider.dart';
@@ -34,11 +35,11 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             title: 'Flutter Demo',
             // home: home_page(),
-            // home: login_screen(),
+            // home: signup_screen(),
             // home: UserConnections(),
-            home: ConnectionRequest(),
+            // home: ConnectionRequest(),
             // home: search_for_goals(),
-
+            home: login_screen(),
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),

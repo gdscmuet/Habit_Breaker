@@ -37,7 +37,7 @@ class _signup_screenState extends State<signup_screen> {
         // userModel.uid = user.uid;
         // userModel.profileImage = await _firebaseRepository.uploadProfileImage(
         //     imageFile: _profileImage!, uid: userModel.uid!);
-        utils.hideLoading();
+        // utils.hideLoading();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -48,12 +48,12 @@ class _signup_screenState extends State<signup_screen> {
         //  _saveUser(user, userModel);
       } else {
         // isLoading(false);
-        utils.hideLoading();
-        // utils.flushBarErrorMessage('Failed to Signup', context);
+        // utils.hideLoading();
+        utils.flushBarErrorMessage('Failed to Signup', context);
       }
     }).catchError((error) {
       // isLoading(false);
-      utils.hideLoading();
+      // utils.hideLoading();
       utils.flushBarErrorMessage(error.message.toString(), context);
     });
   }
@@ -267,7 +267,7 @@ class _signup_screenState extends State<signup_screen> {
                                 name: _nameController.text,
                                 email: _emailController.text,
                               );
-                              utils.showLoading(context);
+                              // utils.showLoading(context);
                               _signup(_userModel);
                               // Navigator.pushNamed(context, RoutesName.infoScreen);
                             }
